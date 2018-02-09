@@ -1,0 +1,15 @@
+# 插件音效
+Sound:
+  error: 'ENTITY_VILLAGER_NO-1-1'
+  success: 'UI_BUTTON_CLICK-1-1'
+  
+# 插件设置
+Settings:
+  # 窗口标题
+  title: '展示框查看'
+  # 禁止查看的描述
+  deny-lore: '禁止查看'
+  # 禁止查看的提示
+  deny-title:
+    title: '§4§l错误'
+    subtitle: '§c这个展示框无法查看'

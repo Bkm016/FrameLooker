@@ -1,0 +1,7 @@
+name: FrameLooker
+main: me.skymc.framelook.Main
+version: {$VERSION}
+
+commands:
+  framelook:
+    permission: framelook.admin
