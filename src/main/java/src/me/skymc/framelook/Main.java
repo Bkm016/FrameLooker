@@ -77,7 +77,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void click(PlayerInteractEntityEvent e) {
 		if (e.getRightClicked() instanceof ItemFrame) {
 			ItemFrame frame = (ItemFrame) e.getRightClicked();
-			if (frame.getItem() == null || frame.getItem().getType().equals(Material.MAP) || !e.getPlayer().isSneaking()) {
+			if (frame.getItem() == null || frame.getItem().getType().equals(Material.AIR) || frame.getItem().getType().equals(Material.MAP) || !e.getPlayer().isSneaking()) {
 				return;
 			}
 			
