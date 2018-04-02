@@ -25,7 +25,7 @@ import me.skymc.taboolib.sound.SoundPack;
 
 /**
  * @author sky
- * @since 2018Äê2ÔÂ8ÈÕ ÏÂÎç1:22:20
+ * @since 2018å¹´2æœˆ8æ—¥ ä¸‹åˆ1:22:20
  */
 public class Main extends JavaPlugin implements Listener {
 	
@@ -43,7 +43,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		config = ConfigUtils.load(this, file);
 		
-		// ÔØÈëÒôĞ§
+		// è½½å…¥éŸ³æ•ˆ
 		error = new SoundPack(config.getString("Sound.error"));
 		success = new SoundPack(config.getString("Sound.success"));
 	}
@@ -54,9 +54,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		Bukkit.getPluginManager().registerEvents(this, this);
 		
-		// Ğ¡¹ã¸æ
-		MsgUtils.send("²å¼şÒÑÔØÈë", this);
-		MsgUtils.send("×÷Õß: &f»µºÚ", this);
+		// å°å¹¿å‘Š
+		MsgUtils.send("æ’ä»¶å·²è½½å…¥", this);
+		MsgUtils.send("ä½œè€…: &fåé»‘", this);
 		MsgUtils.send("QQ: &f449599702", this);
 	}
 	
@@ -81,37 +81,37 @@ public class Main extends JavaPlugin implements Listener {
 				return;
 			}
 			
-			// È¡ÏûÊÂ¼ş
-			e.setCancelled(true);
-			
-			if (frame.getItem().getItemMeta().hasLore() && frame.getItem().getItemMeta().getLore().toString().contains(config.getString("Settings.deny-lore"))) {
-				// ÒôĞ§
-				error.play(e.getPlayer());
-				// ±êÌâ
-				TitleUtils.sendTitle(e.getPlayer(), config.getString("Settings.deny-title.title"), 10, 20, 10, config.getString("Settings.deny-title.subtitle"), 10, 20, 10);
+			// æ£€æŸ¥æ˜¯å¦å…è®¸æ‰“å¼€
+			if (frame.getItem().hasItemMeta() && frame.getItem().getItemMeta().hasLore() && frame.getItem().getItemMeta().getLore().get(0).contains("å±•ç¤º")) {
+				SoundUtils.getSoundPack("Error").play(e.getPlayer());
+				TitleUtils.sendTitle(e.getPlayer(), "Â§4Â§lé”™è¯¯", 10, 20, 10, "Â§cè¿™ä¸ªå±•ç¤ºæ¡†æ— æ³•æŸ¥çœ‹", 10, 20, 10);
+				return;
 			}
+			
+			// ä½¿ç”¨ä¹¦æœ¬æ‰“å¼€
+			if (frame.getItem().getType().equals(Material.WRITTEN_BOOK)) {
+				BookFormatter.forceOpen(e.getPlayer(), frame.getItem());
+			}
+			// ä½¿ç”¨èœå•æ‰“å¼€
 			else {
-				// ±³°ü
-				Inventory inv = Bukkit.createInventory(null, 9, config.getString("Settings.title").replace("&", "¡ì"));
+				Inventory inv = Bukkit.createInventory(null, 9, "Â§0å±•ç¤ºæ¡†æŸ¥çœ‹");
 				inv.setItem(4, frame.getItem());
 				e.getPlayer().openInventory(inv);
-				
-				// ÒôĞ§
-				success.play(e.getPlayer());
 			}
+			e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
 		}
 	}
 	
 	@EventHandler
 	public void click(InventoryClickEvent e) {
-		if (e.getInventory().getTitle().equals(config.getString("Settings.title").replace("&", "¡ì"))) {
+		if (e.getInventory().getTitle().equals(config.getString("Settings.title").replace("&", "Â§"))) {
 			e.setCancelled(true);
 		}
 	}
 	
 	public void closeInventory() {
 		for (Player player : Bukkit.getOnlinePlayers()) {
-			if (player.getOpenInventory().getTopInventory().getTitle().equals(getConfig().getString("Settings.title").replace("&", "¡ì"))) {
+			if (player.getOpenInventory().getTopInventory().getTitle().equals(getConfig().getString("Settings.title").replace("&", "Â§"))) {
 				player.closeInventory();
 			}
 		}
